@@ -1,28 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
-import '../../test.dart';
-
-class Login extends StatelessWidget{
-  @override
-  Widget build(BuildContext context) {
-    // TODO: implement build
-    return MaterialApp(
-      title: '登录',
-      theme: ThemeData(
-        primarySwatch: Colors.red,
-      ),
-      home: LoginModule(),
-      routes: <String,WidgetBuilder>{
-        '/list': (_)=>new Demo()
-      },
-    );
-  }
-}
 
 class LoginModule extends StatefulWidget{
   @override
   State<StatefulWidget> createState() {
-    // TODO: implement createState
     return _LoginModuleState();
   }
 }
@@ -35,7 +16,7 @@ class _LoginModuleState extends State<LoginModule>{
         backgroundColor: Colors.white,
         appBar: AppBar(
           leading: IconButton(
-              icon: Icon(Icons.arrow_back_ios,color: Colors.red,),
+              icon: Icon(Icons.arrow_back_ios,color: Colors.black38),
               onPressed: (){
                 Navigator.pop(context);
               }),

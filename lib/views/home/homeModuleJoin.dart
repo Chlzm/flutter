@@ -12,7 +12,7 @@ class HomeModuleJoin extends StatelessWidget {
         padding: EdgeInsets.all(0.0),
         onPressed: () {
           //Navigator.of(context).pushNamed("/list");
-          Navigator.push(context, CupertinoPageRoute(builder: (context)=>Login()));
+          Navigator.push(context, CupertinoPageRoute(builder: (context)=>LoginModule()));
         },
         color: Colors.red,
         child: Container(

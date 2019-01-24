@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:flutter/cupertino.dart';
 import '../widget/bottomNavgitorBar.dart';
-import 'package:flutter_app1/views/login/login.dart';
 
 class Home extends StatelessWidget{
   @override
@@ -170,7 +169,7 @@ class _HomeModuleState extends State<HomeModule>{
                 child: RaisedButton(
                     padding: EdgeInsets.all(0.0),
                     onPressed: (){
-                      Navigator.push(context, CupertinoPageRoute(builder: (context)=>Login()));
+                      //Navigator.push(context, CupertinoPageRoute(builder: (context)=>Login()));
                     },
                     color: Colors.red,
                     child: Container(

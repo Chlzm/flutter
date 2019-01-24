@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/cupertino.dart';
 
 class Demo extends StatefulWidget {
   @override
@@ -13,7 +14,15 @@ class DemoState extends State<Demo> {
         backgroundColor: Colors.red,
         title: new Text("demo"),
       ),
-      body: new Center(child: new Text("haha"),),
+      body: Container(
+        margin: EdgeInsets.only(top: 100.0),
+        child: GestureDetector(
+          child: Text('ssss'),
+          onTap: (){
+            Navigator.pop(context);
+          },
+        ),
+      )
     );
   }
 }
