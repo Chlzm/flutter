@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
+import 'package:flutter/cupertino.dart';
+import '../widget/bottomNavgitorBar.dart';
+import 'package:flutter_app1/views/login/login.dart';
 
 class Home extends StatelessWidget{
   @override
@@ -10,13 +13,33 @@ class Home extends StatelessWidget{
       theme: ThemeData(
         primarySwatch: Colors.red,
       ),
-      home: Scaffold(
+      home: HomeModule(title:"预约广场"),
+    );
+  }
+}
+
+class HomeModule extends StatefulWidget{
+  HomeModule({Key key,this.title}):super(key:key);
+  final String title;
+  @override
+  State<StatefulWidget> createState() {
+    // TODO: implement createState
+    return _HomeModuleState();
+  }
+}
+
+class _HomeModuleState extends State<HomeModule>{
+  @override
+  Widget build(BuildContext context) {
+    // TODO: implement build
+    return Scaffold(
         appBar: AppBar(
           centerTitle: true,
           backgroundColor:Colors.white,
           elevation:4.0,
           title: Text('预约广场',style: TextStyle(fontSize: 16.0,color: Colors.black)),
         ),
+        bottomNavigationBar: BottomBar(index: 0),
         body:Column(
           children: <Widget>[
             Container(
@@ -73,6 +96,7 @@ class Home extends StatelessWidget{
                             left:0.0,
                             bottom: 0.0,
                             child:Container(
+                              padding: EdgeInsets.only(top: 2.0,bottom: 2.0),
                               alignment: Alignment.center,
                               color: Color.fromRGBO(0, 0, 0, .5),
                               child: Text('跑步',style: TextStyle(color: Colors.white),),
@@ -91,6 +115,7 @@ class Home extends StatelessWidget{
                             left:0.0,
                             bottom: 0.0,
                             child:Container(
+                              padding: EdgeInsets.only(top: 2.0,bottom: 2.0),
                               alignment: Alignment.center,
                               color: Color.fromRGBO(0, 0, 0, .5),
                               child: Text('跑步',style: TextStyle(color: Colors.white),),
@@ -109,6 +134,7 @@ class Home extends StatelessWidget{
                             left:0.0,
                             bottom: 0.0,
                             child:Container(
+                              padding: EdgeInsets.only(top: 2.0,bottom: 2.0),
                               alignment: Alignment.center,
                               color: Color.fromRGBO(0, 0, 0, .5),
                               child: Text('跑步',style: TextStyle(color: Colors.white),),
@@ -127,6 +153,7 @@ class Home extends StatelessWidget{
                             left:0.0,
                             bottom: 0.0,
                             child:Container(
+                              padding: EdgeInsets.only(top: 2.0,bottom: 2.0),
                               alignment: Alignment.center,
                               color: Color.fromRGBO(0, 0, 0, .5),
                               child: Text('跑步',style: TextStyle(color: Colors.white),),
@@ -143,7 +170,7 @@ class Home extends StatelessWidget{
                 child: RaisedButton(
                     padding: EdgeInsets.all(0.0),
                     onPressed: (){
-                      Navigator.of(context).pushNamed("/router/login");
+                      Navigator.push(context, CupertinoPageRoute(builder: (context)=>Login()));
                     },
                     color: Colors.red,
                     child: Container(
@@ -163,10 +190,10 @@ class Home extends StatelessWidget{
             ),
           ],
         )
-      ),
     );
   }
 }
+
 
 Widget _swiperBuilder(BuildContext context, int index) {
   var str = "";

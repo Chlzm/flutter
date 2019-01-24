@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
+import '../../widget/bottomNavgitorBar.dart';
 
 List mlist = [];
-
 
 class MyList extends StatelessWidget{
   @override
@@ -21,7 +21,6 @@ class MyList extends StatelessWidget{
 
 class MyListApp extends StatefulWidget{
   final String title;
-
   MyListApp({Key key,this.title}) :super(key:key);
   @override
   State<StatefulWidget> createState() {
@@ -33,9 +32,7 @@ class MyListApp extends StatefulWidget{
 class _MyListAppState extends State<MyListApp>{
   List subjects = [];
   String title = '';
-
   getBody(){
-
     if (subjects.length != 0) {
       return ListView.builder(
           itemCount: subjects.length,
