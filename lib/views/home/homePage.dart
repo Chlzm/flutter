@@ -24,9 +24,9 @@ class _HomeModuleState extends State<HomePage> {
     )
   ];
   var titles = [
-    "DEMO1",
-    "DEMO2",
-    "404",
+    "HOME",
+    "LIST",
+    "MINE",
   ];
 
   @override
