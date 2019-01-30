@@ -24,7 +24,7 @@ class __HomeModuleBannerState extends State<HomeModuleBanner> {
         itemCount: 4,
         itemBuilder: _swiperBuilder,
         pagination: new SwiperPagination(
-            builder: DotSwiperPaginationBuilder(
+          builder: DotSwiperPaginationBuilder(
           color: Colors.black54,
           activeColor: Colors.white,
         )),
@@ -40,8 +40,10 @@ Widget _swiperBuilder(BuildContext context, int index) {
     "http://wc.xiechangqing.cn/images/files/20181215/232958MvXh9yBL.jpg",
     "http://wc.xiechangqing.cn/images/files/20181215/2330092MquMgIm.jpg"
   ];
-  return (Image.network(
-    list[index],
-    fit: BoxFit.fill,
-  ));
+  return(
+      Image.network(
+        list[index],
+        fit: BoxFit.fill,
+    )
+  );
 }

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import '../login/login.dart';
-import '../animation.dart';
+import '../../test.dart';
 
 class HomeModuleJoin extends StatelessWidget {
   @override

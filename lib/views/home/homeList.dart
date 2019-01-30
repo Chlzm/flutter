@@ -77,7 +77,7 @@ class _HomeListState extends State<HomeList>{
                 Expanded(
                     child: Container(
                       margin: EdgeInsets.only(left: 8.0),
-                      height: 100.0,
+                      height: 120.0,
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: <Widget>[

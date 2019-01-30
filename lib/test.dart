@@ -7,6 +7,8 @@ class Demo extends StatefulWidget {
 }
 
 class DemoState extends State<Demo> {
+  TextEditingController controller = TextEditingController();
+  FocusNode passwordTextFieldNode = FocusNode();
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
@@ -16,12 +18,19 @@ class DemoState extends State<Demo> {
       ),
       body: Container(
         margin: EdgeInsets.only(top: 100.0),
-        child: GestureDetector(
+        child:CupertinoTextField(
+          keyboardType: TextInputType.text,
+          focusNode: passwordTextFieldNode,
+        )
+
+
+
+        /*GestureDetector(
           child: Text('ssss'),
           onTap: (){
             Navigator.pop(context);
           },
-        ),
+        ),*/
       )
     );
   }
