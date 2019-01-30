@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
 import '../../util/adapt.dart';
-import 'package:transparent_image/transparent_image.dart';
+import '../service/service.dart';
+import 'package:flutter_app1/widget/app_bar.dart';
 
 class LoginModule extends StatefulWidget {
   @override
@@ -76,14 +77,16 @@ class _LoginModuleState extends State<LoginModule>
       backgroundColor: Colors.white,
       appBar: AppBar(
         leading: IconButton(
-          icon: Icon(Icons.arrow_back_ios, color: Colors.black38),
+          icon: Icon(Icons.arrow_back_ios, color: Colors.black38,size: 18.0),
           onPressed: () {
             Navigator.pop(context);
           }),
         centerTitle: true,
         backgroundColor: Colors.white,
         elevation: 4.0,
-        title: Text('登录',style: TextStyle(fontSize: 16.0, color: Colors.black))),
+        title: Text('登录',style: TextStyle(fontSize: 16.0, color: Colors.black)
+        )
+      ),
       body: GestureDetector(
         onTap: (){
           accountTextFieldNode.unfocus();
@@ -113,7 +116,7 @@ class _LoginModuleState extends State<LoginModule>
                           decoration: BoxDecoration(
                               border: Border(
                                   bottom:
-                                  BorderSide(color: Colors.red, width: 2.0))),
+                                  BorderSide(color: Color.fromRGBO(190, 39, 33, 1.0), width: 2.0))),
                         ),
                       ),
                       Container(
@@ -329,11 +332,11 @@ class _LoginModuleState extends State<LoginModule>
                       onPressed: (){
                         print('222');
                       },
-                      color: Colors.red,
+                      color: Color.fromRGBO(190, 39, 33, 1.0),
                       child: Container(
                         padding: EdgeInsets.only(top: 15.0,bottom: 15.0),
                         alignment: Alignment.center,
-                        child: Text('登录',style: TextStyle(color: Colors.white,fontFamily:'微软雅黑',fontSize: 20.0),),
+                        child: Text('登录',style: TextStyle(color: Colors.white,fontSize: 18.0),),
                       ),
                     )
                   ),
@@ -349,7 +352,7 @@ class _LoginModuleState extends State<LoginModule>
                           highlightColor: Colors.white,
                           splashColor: Colors.white,
                           onPressed: (){
-                            print('服务协议');
+                            Navigator.push(context, CupertinoPageRoute(builder: (context)=>Service()));
                           },
                           child: Text('《服务协议》',style: TextStyle(color: Color.fromRGBO(81, 131, 240, 1)),),
                         )
