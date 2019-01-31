@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'homeContainer.dart';
 import 'homeList.dart';
+import 'package:flutter_app1/views/mine/mine.dart';
 
 class HomePage extends StatefulWidget {
   HomePage({Key key, this.title}) : super(key: key);
@@ -19,14 +20,12 @@ class _HomeModuleState extends State<HomePage> {
   var widgets = [
     HomeContainer(),
     HomeList(),
-    Center(
-      child: Text('404',style: TextStyle(fontSize: 100),),
-    )
+    Mine()
   ];
   var titles = [
     "HOME",
     "LIST",
-    "MINE",
+    "我的",
   ];
 
   @override
