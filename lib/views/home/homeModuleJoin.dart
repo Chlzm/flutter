@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
-import '../login/login.dart';
-import '../../test.dart';
+
 
 class HomeModuleJoin extends StatelessWidget {
   @override
@@ -13,7 +12,7 @@ class HomeModuleJoin extends StatelessWidget {
         padding: EdgeInsets.all(0.0),
         onPressed: () {
           //Navigator.of(context).pushNamed("/list");
-          Navigator.push(context, CupertinoPageRoute(builder: (context)=>LoginModule()));
+          //Navigator.push(context, CupertinoPageRoute(builder: (context)=>LoginModule()));
         },
         child: Container(
           decoration: BoxDecoration(

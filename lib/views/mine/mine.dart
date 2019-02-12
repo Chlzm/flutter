@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter_app1/views/mine/mine_item.dart';
 import 'package:flutter_app1/views/mine/mine_list_view.dart';
+import 'package:flutter_app1/views/login/login.dart';
 
 
 class Mine extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
     return MineFull();
   }
 }
@@ -14,7 +15,6 @@ class Mine extends StatelessWidget {
 class MineFull extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
-    // TODO: implement createState
     return MineFullState();
   }
 }
@@ -29,7 +29,7 @@ class MineFullState extends State<MineFull> {
       margin: EdgeInsets.only(top: 20.0,bottom: 20.0),
       child: RaisedButton(
         onPressed: (){
-          print('222');
+          Navigator.push(context, CupertinoPageRoute(builder: (context)=>LoginModule()));
         },
         color: Color.fromRGBO(190, 39, 33, 1.0),
         child: Container(
@@ -43,7 +43,6 @@ class MineFullState extends State<MineFull> {
 
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
     return Container(
       padding: EdgeInsets.only(top: 20.0),
       child: ListView(

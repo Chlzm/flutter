@@ -1,14 +1,35 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
-import 'views/home/homePage.dart';
+import 'package:flutter_redux/flutter_redux.dart';
+import 'package:redux/redux.dart';
+import 'package:flutter_app1/views/home/homePage.dart';
+import 'package:flutter_app1/states/app_state.dart';
 import 'test.dart';
 
-void main() => runApp(MyApp());
+AppState mainReducer(AppState state,dynamic action){
+  if(Action.increment==action){
+    state.count.count += 1;
+  }
+  return state;
+}
+
+void main(){
+  Store<AppState> store = new Store<AppState>(mainReducer,initialState: new AppState(
+    count: new CountState(),
+    auth: new AuthState(),
+  ));
+  runApp(new MyApp(store: store,));
+}
 
 class MyApp extends StatelessWidget {
+  final Store<AppState> store;
+  MyApp({this.store});
   @override
   Widget build(BuildContext context) {
-    return MyAppFullWidget();
+    return StoreProvider(
+      store: store,
+      child:MyAppFullWidget()
+    );
   }
 }
 
@@ -23,14 +44,13 @@ class MyAppFullWidget extends StatefulWidget {
 class _MyAppFullWidgetState extends State<MyAppFullWidget> {
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
     return MaterialApp(
       title: 'Flutter Demo',
       routes: <String,WidgetBuilder>{
         '/list': (_)=>new Demo()
       },
       debugShowCheckedModeBanner: false,
-      theme:ThemeData(primarySwatch: Colors.red, bottomAppBarColor: Colors.black),
+      theme:ThemeData(backgroundColor:Colors.black,primarySwatch: Colors.red, bottomAppBarColor: Colors.black),
       home: HomePage(title: '预约广场'),
     );
   }

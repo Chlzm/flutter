@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter_app1/views/reserve/reserve.dart';
 
 class HomeModuleActivity extends StatefulWidget {
   @override
@@ -19,11 +21,34 @@ class _HomeModuleActivity extends State<HomeModuleActivity>{
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: <Widget>[
+          GestureDetector(
+            child: Container(
+              child: Stack(
+                children: <Widget>[
+                  Image.network("http://wc.xiechangqing.cn/dist/images/021bf8fbab202003ad2d391c2a74ec63.jpg",fit: BoxFit.fill,width: 75.0,),
+                  Positioned(
+                      width: 75.0,
+                      left:0.0,
+                      bottom: 0.0,
+                      child:Container(
+                        padding: EdgeInsets.only(top: 2.0,bottom: 2.0),
+                        alignment: Alignment.center,
+                        color: Color.fromRGBO(0, 0, 0, .5),
+                        child: Text('跑步',style: TextStyle(color: Colors.white),),
+                      )
+                  )
+                ],
+              ),
+            ),
+            onTap: (){
+              Navigator.push(context, CupertinoPageRoute(builder: (context)=>ReserveApp(title: '跑步预约')));
+            },
+          ),
           Container(
             color: Colors.red,
             child: Stack(
               children: <Widget>[
-                Image.network("http://wc.xiechangqing.cn/dist/images/021bf8fbab202003ad2d391c2a74ec63.jpg",fit: BoxFit.fill,width: 75.0,),
+                Image.network("http://wc.xiechangqing.cn/dist/images/0faa83fafa4547a9f7efbeb064f70c19.jpg",fit: BoxFit.fill,width: 75.0,),
                 Positioned(
                     width: 75.0,
                     left:0.0,
@@ -32,7 +57,7 @@ class _HomeModuleActivity extends State<HomeModuleActivity>{
                       padding: EdgeInsets.only(top: 2.0,bottom: 2.0),
                       alignment: Alignment.center,
                       color: Color.fromRGBO(0, 0, 0, .5),
-                      child: Text('跑步',style: TextStyle(color: Colors.white),),
+                      child: Text('自行车',style: TextStyle(color: Colors.white),),
                     )
                 )
               ],
@@ -42,7 +67,7 @@ class _HomeModuleActivity extends State<HomeModuleActivity>{
             color: Colors.red,
             child: Stack(
               children: <Widget>[
-                Image.network("http://wc.xiechangqing.cn/dist/images/021bf8fbab202003ad2d391c2a74ec63.jpg",fit: BoxFit.fill,width: 75.0,),
+                Image.network("http://wc.xiechangqing.cn/dist/images/c3dd39120f8db1d571b437feeaaf17ff.jpg",fit: BoxFit.fill,width: 75.0,),
                 Positioned(
                     width: 75.0,
                     left:0.0,
@@ -51,7 +76,7 @@ class _HomeModuleActivity extends State<HomeModuleActivity>{
                       padding: EdgeInsets.only(top: 2.0,bottom: 2.0),
                       alignment: Alignment.center,
                       color: Color.fromRGBO(0, 0, 0, .5),
-                      child: Text('跑步',style: TextStyle(color: Colors.white),),
+                      child: Text('卡丁车',style: TextStyle(color: Colors.white),),
                     )
                 )
               ],
@@ -61,36 +86,17 @@ class _HomeModuleActivity extends State<HomeModuleActivity>{
             color: Colors.red,
             child: Stack(
               children: <Widget>[
-                Image.network("http://wc.xiechangqing.cn/dist/images/021bf8fbab202003ad2d391c2a74ec63.jpg",fit: BoxFit.fill,width: 75.0,),
+                Image.network("http://wc.xiechangqing.cn/dist/images/299508983e5dd89b2f4ac61cb11b4dfc.jpg",fit: BoxFit.fill,width: 75.0,),
                 Positioned(
-                    width: 75.0,
-                    left:0.0,
-                    bottom: 0.0,
-                    child:Container(
-                      padding: EdgeInsets.only(top: 2.0,bottom: 2.0),
-                      alignment: Alignment.center,
-                      color: Color.fromRGBO(0, 0, 0, .5),
-                      child: Text('跑步',style: TextStyle(color: Colors.white),),
-                    )
-                )
-              ],
-            ),
-          ),
-          Container(
-            color: Colors.red,
-            child: Stack(
-              children: <Widget>[
-                Image.network("http://wc.xiechangqing.cn/dist/images/021bf8fbab202003ad2d391c2a74ec63.jpg",fit: BoxFit.fill,width: 75.0,),
-                Positioned(
-                    width: 75.0,
-                    left:0.0,
-                    bottom: 0.0,
-                    child:Container(
-                      padding: EdgeInsets.only(top: 2.0,bottom: 2.0),
-                      alignment: Alignment.center,
-                      color: Color.fromRGBO(0, 0, 0, .5),
-                      child: Text('跑步',style: TextStyle(color: Colors.white),),
-                    )
+                  width: 75.0,
+                  left:0.0,
+                  bottom: 0.0,
+                  child:Container(
+                    padding: EdgeInsets.only(top: 2.0,bottom: 2.0),
+                    alignment: Alignment.center,
+                    color: Color.fromRGBO(0, 0, 0, .5),
+                    child: Text('赛道',style: TextStyle(color: Colors.white)),
+                  )
                 )
               ],
             ),

@@ -100,7 +100,6 @@ class MineListView extends StatelessWidget{
           ),
 
           Container(
-            padding: EdgeInsets.only(top: 10.0,bottom: 10.0),
             decoration: BoxDecoration(
                 border: Border(
                     bottom: BorderSide(
@@ -114,6 +113,7 @@ class MineListView extends StatelessWidget{
                 Navigator.push(context, CupertinoPageRoute(builder: (context)=>FeedbackApp()));
               },
               child: Container(
+                padding: EdgeInsets.only(top: 10.0,bottom: 10.0),
                 color: Colors.transparent,
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -136,7 +136,6 @@ class MineListView extends StatelessWidget{
             ),
           ),
           Container(
-            padding: EdgeInsets.only(top: 10.0,bottom: 10.0),
             decoration: BoxDecoration(
                 border: Border(
                     bottom: BorderSide(
@@ -150,6 +149,7 @@ class MineListView extends StatelessWidget{
                 Navigator.push(context, CupertinoPageRoute(builder: (context)=>About()));
               },
               child: Container(
+                padding: EdgeInsets.only(top: 10.0,bottom: 10.0),
                 color: Colors.transparent,
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
