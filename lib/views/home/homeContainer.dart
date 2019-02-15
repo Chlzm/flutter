@@ -21,32 +21,32 @@ class _HomeContainerState extends State<HomeContainer> {
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
-    return Column(
+    return ListView(
       children: <Widget>[
         HomeModuleBanner(title: 'sssss'),
         HomeModuleSubscribe(),
         HomeModuleActivity(),
         HomeModuleJoin(),
-        Center(
-          child: StoreConnector<AppState, int>(
-            builder: (context, count) {
-              return Text(count.toString());
-            },
-            converter: (store) => store.state.count.count),
-        ),
-        Container(
-          child: StoreConnector<AppState,VoidCallback>(
-            builder: (BuildContext context,VoidCallback callback){
-              return GestureDetector(
-                child: Text('ssss'),
-                onTap: callback,
-              );
-            },
-            converter: (Store<AppState> store){
-              return ()=>store.dispatch(Action.increment);
-            }
-          ),
-        )
+//        Center(
+//          child: StoreConnector<AppState, int>(
+//            builder: (context, count) {
+//              return Text(count.toString());
+//            },
+//            converter: (store) => store.state.count.count),
+//        ),
+//        Container(
+//          child: StoreConnector<AppState,VoidCallback>(
+//            builder: (BuildContext context,VoidCallback callback){
+//              return GestureDetector(
+//                child: Text('ssss'),
+//                onTap: callback,
+//              );
+//            },
+//            converter: (Store<AppState> store){
+//              return ()=>store.dispatch(Action.increment);
+//            }
+//          ),
+//        )
       ],
     );
   }

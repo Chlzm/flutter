@@ -40,7 +40,6 @@ class _MyListAppState extends State<MyListApp>{
             return getItem(subjects[position]);
           });
     } else {
-      // 加载菊花
       return Text('加载中...');
     }
   }
@@ -93,42 +92,42 @@ class _MyListAppState extends State<MyListApp>{
                 ),
               ),
               Expanded(
-                  child: Container(
-                    margin: EdgeInsets.only(left: 8.0),
-                    height: 100.0,
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: <Widget>[
-                        Container(
-                          margin: EdgeInsets.only(top: 10.0,bottom: 10.0),
-                          child: Text(
-                            //subject['title'],
-                            '跑步活动',
-                            style: TextStyle(
-                              fontSize: 18.0,
-                              color: Colors.black87
-                            ),
-                            maxLines: 1,
-                          ),
-                        ),
-                        Text(
-                          //'预约时间：${subject['rating']['average']}',
-                          '预约时间：2019-04-20 16:00-18:00',
+                child: Container(
+                  margin: EdgeInsets.only(left: 8.0),
+                  height: 100.0,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget>[
+                      Container(
+                        margin: EdgeInsets.only(top: 10.0,bottom: 10.0),
+                        child: Text(
+                          //subject['title'],
+                          '跑步活动',
                           style: TextStyle(
-                              fontSize: 14.0,
-                              color: Colors.black45
+                            fontSize: 18.0,
+                            color: Colors.black87
                           ),
+                          maxLines: 1,
                         ),
-                        Text(
-                          '场次编号：PB20190119144607129533',
-                          style: TextStyle(
-                              fontSize: 14.0,
-                              color: Colors.black45
-                          ),
+                      ),
+                      Text(
+                        //'预约时间：${subject['rating']['average']}',
+                        '预约时间：2019-04-20 16:00-18:00',
+                        style: TextStyle(
+                            fontSize: 14.0,
+                            color: Colors.black45
                         ),
-                      ],
-                    ),
-                  )
+                      ),
+                      Text(
+                        '场次编号：PB20190119144607129533',
+                        style: TextStyle(
+                            fontSize: 14.0,
+                            color: Colors.black45
+                        ),
+                      ),
+                    ],
+                  ),
+                )
               )
             ],
           ),
@@ -155,7 +154,11 @@ class _MyListAppState extends State<MyListApp>{
     );
     return Card(
       margin: EdgeInsets.only(left: 10.0,right: 10.0,bottom: 15.0),
-      child: row,
+      child: GestureDetector(
+        child: row,
+        onTap: (){
+        },
+      ),
     );
   }
 

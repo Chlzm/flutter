@@ -16,6 +16,7 @@ class _ReserveConfirmState extends State<ReserveConfirm> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Color.fromRGBO(230, 230, 230, 1.0),
       appBar: AppBar(
         leading: IconButton(
           icon:
@@ -40,13 +41,13 @@ class _ReserveConfirmState extends State<ReserveConfirm> {
                 Container(
                   padding: EdgeInsets.all(10.0),
                   color: Colors.white,
-                  height: 100.0,
+                  height: 80.0,
                   child: Row(
                     children: <Widget>[
                       Image.network(
                         "http://wc.xiechangqing.cn/images/files/activityfile/bike_default.jpg",
                         fit: BoxFit.fill,
-                        width: 80.0,
+                        width: 70.0,
                       ),
                       Container(
                         padding: EdgeInsets.only(left: 10.0),

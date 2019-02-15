@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'homeContainer.dart';
 import 'homeList.dart';
 import 'package:flutter_app1/views/mine/mine.dart';
+import 'package:flutter_app1/views/message/message.dart';
 
 class HomePage extends StatefulWidget {
   HomePage({Key key, this.title}) : super(key: key);
@@ -22,21 +23,50 @@ class _HomeModuleState extends State<HomePage> {
     HomeList(),
     Mine()
   ];
+
   var titles = [
-    "HOME",
-    "LIST",
+    "预约广场",
+    "我的订单",
     "我的",
   ];
 
+  Widget getIcons(BuildContext context,int index){
+    var icons = [
+      Container(
+        child: Text('2'),
+        padding: EdgeInsets.only(right: 5.0),
+      ),
+      Container(
+        child: Text('2'),
+        padding: EdgeInsets.only(right: 5.0),
+      ),
+      GestureDetector(
+        child: Container(
+          child: Icon(Icons.mail,size: 25.0,color: Colors.black54),
+          padding: EdgeInsets.only(right: 5.0),
+        ),
+        onTap: (){
+          Navigator.push(context, CupertinoPageRoute(builder: (context)=>Message()));
+        },
+      )
+    ];
+    return icons[index];
+  }
+
+
+
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
     return Scaffold(
+      backgroundColor: Color.fromRGBO(230, 230, 230, 1.0),
       appBar: AppBar(
         centerTitle: true,
-        backgroundColor:Colors.white,
+        backgroundColor: Colors.white,
         elevation:4.0,
         title: Text(titles[_currentIndex],style: TextStyle(fontSize: 16.0,color: Colors.black)),
+        actions: <Widget>[
+          getIcons(context,_currentIndex),
+        ],
       ),
       body: widgets[_currentIndex],
       bottomNavigationBar: BottomNavigationBar(

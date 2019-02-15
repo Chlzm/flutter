@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:http/http.dart' as http;
-import 'dart:convert';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter_app1/views/order_detail/order_detail.dart';
+import 'package:flutter_app1/api/home.dart';
+import 'package:dio/dio.dart';
 
 List mlist = [];
 class HomeList extends StatefulWidget{
   @override
   State<StatefulWidget> createState() {
-    // TODO: implement createState
     return _HomeListState();
   }
 }
@@ -14,6 +15,7 @@ class HomeList extends StatefulWidget{
 class _HomeListState extends State<HomeList>{
   List subjects = [];
   String title = '';
+  HomeApi api = new HomeApi();
   getBody(){
     if (subjects.length != 0) {
       return ListView.builder(
@@ -28,19 +30,6 @@ class _HomeListState extends State<HomeList>{
   }
 
   getItem(var subject) {
-//    演员列表
-    var avatars = List.generate(subject['casts'].length, (int index) =>
-        Container(
-          margin: EdgeInsets.only(left: index.toDouble() == 0.0 ? 0.0 : 16.0),
-
-          child: CircleAvatar(
-              backgroundColor: Colors.white10,
-              backgroundImage: NetworkImage(
-                  subject['casts'][index]['avatars']['small']
-              )
-          ),
-        ),
-    );
     var row = Container(
         margin: EdgeInsets.all(8.0),
         child: Column(
@@ -58,8 +47,8 @@ class _HomeListState extends State<HomeList>{
               child:Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: <Widget>[
-                  Text('订单号11：PB20190119144607129533',style: TextStyle(color: Colors.black45),),
-                  Text('可使用',style: TextStyle(color: Colors.blue)),
+                  Text('订单号：' + subject['orderNo'],style: TextStyle(color: Colors.black45),),
+                  Text(subject['orderStatusStr'],style: TextStyle(color: Colors.black45)),
                 ],
               ),
             ),
@@ -69,23 +58,23 @@ class _HomeListState extends State<HomeList>{
                   borderRadius: BorderRadius.circular(0.0),
                   child: Image.network(
                     //subject['images']['large'],
-                    'http://wc.xiechangqing.cn/images/files/activityfile/bike_default.jpg',
-                    width: 101.0, height: 99.0,
+                    subject['activityImgUrl'],
+                    width: 80.0, height: 80.0,
                     fit: BoxFit.fill,
                   ),
                 ),
                 Expanded(
                     child: Container(
                       margin: EdgeInsets.only(left: 8.0),
-                      height: 120.0,
+                      height: 80.0,
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: <Widget>[
                           Container(
                             margin: EdgeInsets.only(top: 10.0,bottom: 10.0),
                             child: Text(
-                              //subject['title'],
-                              '跑步活动',
+                              subject['activityName'],
                               style: TextStyle(
                                   fontSize: 18.0,
                                   color: Colors.black87
@@ -95,14 +84,14 @@ class _HomeListState extends State<HomeList>{
                           ),
                           Text(
                             //'预约时间：${subject['rating']['average']}',
-                            '预约时间：2019-04-20 16:00-18:00',
+                            '预约时间： ${subject['activityDateStr']} ${subject['activityStartHour']}-${subject['activityEndHour']}',
                             style: TextStyle(
                                 fontSize: 14.0,
                                 color: Colors.black45
                             ),
                           ),
                           Text(
-                            '场次编号：PB20190119144607129533',
+                            '场次编号：${subject['activityCode']}',
                             style: TextStyle(
                                 fontSize: 14.0,
                                 color: Colors.black45
@@ -127,7 +116,7 @@ class _HomeListState extends State<HomeList>{
               child:Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: <Widget>[
-                  Text('¥1000.00',style: TextStyle(color: Colors.red,fontSize: 18.0)),
+                  Text('¥${subject['paymoney'].toString()}',style: TextStyle(color: Colors.red,fontSize: 18.0)),
                   Text(''),
                 ],
               ),
@@ -137,22 +126,24 @@ class _HomeListState extends State<HomeList>{
     );
     return Card(
       margin: EdgeInsets.only(left: 10.0,right: 10.0,bottom: 15.0),
-      child: row,
+      child: GestureDetector(
+        child: row,
+        onTap: (){
+          Navigator.push(context, CupertinoPageRoute(builder: (context)=>OrderDetail(orderId: subject['orderId'])));
+          //print(subject);
+        },
+      ),
     );
   }
 
-  loadData() async {
+  Future loadData() async {
     if(mlist.length != 0){
       subjects = mlist;
       return;
     }
-    String loadRUL = "https://api.douban.com/v2/movie/in_theaters";
-    http.Response response = await http.get(loadRUL);
-    var result = json.decode(response.body);
+    Response response = await api.getList();
     setState(() {
-      title = result['title'];
-      print('title: $title');
-      mlist = subjects = result['subjects'];
+      mlist = subjects = response.data['body'];
     });
   }
 
@@ -169,7 +160,7 @@ class _HomeListState extends State<HomeList>{
     return Container(
       padding: EdgeInsets.only(top: 15.0,bottom: 15.0),
       child: Center(
-        child: getBody(),
+      child: getBody(),
       ),
     );
   }

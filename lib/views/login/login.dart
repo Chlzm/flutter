@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
-import '../../util/adapt.dart';
-import '../service/service.dart';
-import 'package:flutter_app1/widget/app_bar.dart';
+import 'package:flutter_app1/util/adapt.dart';
+import 'package:flutter_app1/util/wdio.dart';
+import 'package:flutter_app1/views/home/homePage.dart';
+import 'dart:convert';
+import 'package:dio/dio.dart';
 
 class LoginModule extends StatefulWidget {
   @override
@@ -19,6 +22,8 @@ class _LoginModuleState extends State<LoginModule>
   SwiperController swiperController;
   FocusNode accountTextFieldNode = FocusNode();
   FocusNode passwordTextFieldNode = FocusNode();
+  String username = '';
+  String password = '';
 
   void _initSwiperController() {
     swiperController = new SwiperController();
@@ -69,6 +74,47 @@ class _LoginModuleState extends State<LoginModule>
   void dispose() {
     _controller?.dispose();
     super.dispose();
+  }
+
+
+
+  Future login(BuildContext context) async{
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    Wdio w = new Wdio();
+    Response<Map> res = await w.wdio.post(
+      "/rest/account/login",
+      data: {
+        "username" : username,
+        "password": password
+      }
+    );
+    if(res.data['code'] != "00000"){
+      showDialog(
+        context: context,
+        builder:(_){
+          return new AlertDialog(
+            titleTextStyle: TextStyle(
+              fontSize: 16.0,
+              color: Color.fromRGBO(190, 39, 33, 1.0)
+            ),
+            title: Text('温馨提示'),
+            content: Text(res.data['msg']),
+            contentTextStyle: TextStyle(
+              fontSize: 14.0,
+              color: Colors.black54
+            ),
+            actions: <Widget>[
+              new FlatButton(child:new Text("OK"), onPressed: (){
+                Navigator.of(context).pop();
+              })
+            ],
+          );
+        }
+      );
+      return;
+    }
+    prefs.setString("data", json.encode(res.data["body"]));
+    Navigator.pushReplacement(context, CupertinoPageRoute(builder: (context)=>HomePage(title: '预约广场',)));
   }
 
   @override
@@ -191,6 +237,9 @@ class _LoginModuleState extends State<LoginModule>
                             Padding(
                                 padding: EdgeInsets.only(top: 10.0),
                                 child: CupertinoTextField(
+                                  onChanged: (value){
+                                    username = value;
+                                  },
                                   focusNode: accountTextFieldNode,
                                   clearButtonMode: OverlayVisibilityMode.editing,
                                   decoration: BoxDecoration(
@@ -209,6 +258,9 @@ class _LoginModuleState extends State<LoginModule>
                             Padding(
                                 padding: EdgeInsets.only(top: 20.0),
                                 child: CupertinoTextField(
+                                  onChanged: (value){
+                                    password = value;
+                                  },
                                   focusNode: passwordTextFieldNode,
                                   padding: EdgeInsets.all(10.0),
                                   decoration: BoxDecoration(
@@ -331,6 +383,7 @@ class _LoginModuleState extends State<LoginModule>
                     child: RaisedButton(
                       onPressed: (){
                         print('222');
+                        login(context);
                       },
                       color: Color.fromRGBO(190, 39, 33, 1.0),
                       child: Container(
@@ -352,7 +405,8 @@ class _LoginModuleState extends State<LoginModule>
                           highlightColor: Colors.white,
                           splashColor: Colors.white,
                           onPressed: (){
-                            Navigator.push(context, CupertinoPageRoute(builder: (context)=>Service()));
+                            login(context);
+
                           },
                           child: Text('《服务协议》',style: TextStyle(color: Color.fromRGBO(81, 131, 240, 1)),),
                         )
@@ -365,7 +419,6 @@ class _LoginModuleState extends State<LoginModule>
           ],
         ),
       ),
-
     );
   }
 }
